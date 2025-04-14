@@ -136,9 +136,11 @@ function showEntity(input) {
     }
   });
 
-  keywordInput.addEventListener("keypress", e => {
-    if (e.key === "Enter") sendButton.click();
-  });
+keywordInput.addEventListener("focus", () => {
+  setTimeout(() => {
+    keywordInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 300);
+});
 
   showEntity("처음으로");
 });
