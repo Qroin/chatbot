@@ -7,15 +7,19 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="chat-container">
-    <div id="chat-log"></div>
+<div id="chat-container">
+<div id="chat-header">
+  <span style="font-size: 1.2em;">⚡ 한국전기안전공사</span><br>
+  <small>전기화재 예방 챗봇</small>
+</div>
+  <div id="chat-log"></div>
     <div id="quick-replies" class="options"></div>
     <div id="input-area">
       <input type="text" id="keyword-input" placeholder="궁금한 키워드를 입력해보세요" />
       <button id="send-button">전송</button>
     </div>
   </div>
-
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
