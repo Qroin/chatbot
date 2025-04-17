@@ -3,21 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>전기안전 챗봇</title>
+  <title>전기화재 예방 챗봇</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <div id="chat-container">
-    <div id="chat-header">⚡ 한국전기안전공사</div>
-    <div id="chat-log"></div>
+<div id="chat-container">
+<div id="chat-header">
+  <span style="font-size: 1.2em;">⚡ 한국전기안전공사</span><br>
+  <small>전기화재 예방 챗봇</small>
+</div>
+  <div id="chat-log"></div>
+    <div id="quick-replies" class="options"></div>
     <div id="input-area">
       <input type="text" id="keyword-input" placeholder="궁금한 키워드를 입력해보세요" />
       <button id="send-button">전송</button>
     </div>
   </div>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+  <script src="script.js"></script>
+<script>
+  function setRealHeight() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+  window.addEventListener('resize', setRealHeight);
+  window.addEventListener('orientationchange', setRealHeight);
+  setRealHeight(); // 초기 호출
+</script>
+<script type="module" src="script.js"></script>
 
-  <!-- 모듈형 스크립트 (데이터는 entities.js에서 가져옴) -->
-  <script type="module" src="script.js"></script>
 </body>
 </html>
