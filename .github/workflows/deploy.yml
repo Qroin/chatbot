@@ -1,0 +1,31 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ] # main 브랜치에 푸시될 때 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: SSH and Deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_KEY }}
+          port: 22
+          script: |
+            # 1. 프로젝트 폴더로 이동 (본인의 실제 서버 경로로 수정하세요!)
+            cd /home/ubuntu/chat_bot 
+            
+            # 2. 최신 코드 가져오기
+            git pull origin main
+            
+            # 3. 빌드 및 재시작 (예시: Node.js 사용 시)
+            # 만약 다른 언어라면 이 부분을 수정해야 합니다.
+            npm install
+            pm2 restart all || npm start
