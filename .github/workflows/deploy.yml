@@ -25,7 +25,7 @@ jobs:
           proxy_password: ${{ secrets.PROXY_PASS }} # 프록시 비번 (필요한 경우)
           # -----------------------
           script: |
-            cd /var/www/chatbot
+            cd /var/www/apps/chatbot
             git pull origin main
             npm install
             pm2 restart all || npm start
