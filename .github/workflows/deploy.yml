@@ -20,7 +20,7 @@ jobs:
           port: 22
           script: |
             # 1. 프로젝트 폴더로 이동 (본인의 실제 서버 경로로 수정하세요!)
-            cd /var/www/chatbot 
+            cd /var/www/apps/chatbot 
             
             # 2. 최신 코드 가져오기
             git pull origin main
