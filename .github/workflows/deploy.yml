@@ -23,6 +23,7 @@ jobs:
           proxy_port: ${{ secrets.PROXY_PORT }} # 프록시 서버 포트
           proxy_username: ${{ secrets.PROXY_USER }} # 프록시 계정 (필요한 경우)
           proxy_password: ${{ secrets.PROXY_PASS }} # 프록시 비번 (필요한 경우)
+          debug: true 
           # -----------------------
           script: |
             cd /var/www/apps/chatbot
