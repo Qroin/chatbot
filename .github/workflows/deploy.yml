@@ -18,5 +18,5 @@ jobs:
           rsync -av --delete \
             --exclude=.git \
             --exclude=.github \
-            ./ /var/www/apps/chatbot/
+            ./ /srv/apps/chatbot/
           echo "✅ 배포가 성공적으로 완료되었습니다!"
