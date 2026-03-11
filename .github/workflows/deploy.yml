@@ -2,8 +2,8 @@ name: chatbot
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    tags:
+      - "v*"
 
 jobs:
   deploy:
@@ -13,10 +13,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy to Server
+      - name: Get tag name
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Build
         run: |
-          rsync -av --delete \
-            --exclude=.git \
-            --exclude=.github \
-            ./ /srv/apps/chatbot/
-          echo "✅ 배포가 성공적으로 완료되었습니다!"
+          mkdir dist
+          cp -r *.html *.js *.css dist/ || true
+
+      - name: Deploy to branch
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          git fetch origin deploy || true
+          git checkout -B deploy origin/deploy || git checkout --orphan deploy
+
+          mkdir -p $TAG_NAME
+          cp -r dist/* $TAG_NAME/
+
+          git add .
+          git commit -m "deploy $TAG_NAME"
+          git push origin deploy
